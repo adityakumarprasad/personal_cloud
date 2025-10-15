@@ -8,15 +8,11 @@ const authenticateToken = require('../middlewares/auth')
 
 // Add root route
 router.get('/', (req, res) => {
-  console.log('Root route hit!');
-  console.log('Cookies:', req.cookies);
-  
+  // Check if user has token
   const token = req.cookies.token;
   if (token) {
-    console.log('Redirecting to /home');
     res.redirect('/home');
   } else {
-    console.log('Redirecting to /user/register');
     res.redirect('/user/register');
   }
 })

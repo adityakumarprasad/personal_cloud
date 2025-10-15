@@ -28,7 +28,7 @@ router.post('/register',
             password: hashedPassword
         });
 
-        res.json(newUser);
+        res.redirect('/user/login');
     }
 );
 
@@ -39,16 +39,15 @@ router.get('/login', (req, res) => {
 router.post('/login',
     body('email').trim().isEmail(),
     body('password').trim().isLength({ min: 5 }),
-    body('username').trim().isLength({ min: 5 }),
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array(), message: 'Invalid Data' });
         }
 
-        const { username, password } = req.body;
+        const { email, password } = req.body;
         const user = await userModel.findOne({
-            username: username
+            email: email
         });
 
         if (!user) {
@@ -66,9 +65,14 @@ router.post('/login',
             username: user.username
         }, process.env.JWT_SECRET);
 
-        res.cookie('token' , token)
-        res.send('Logged in')
+        res.cookie('token' , token);
+        res.redirect('/');
     }
 );
+
+router.get('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/user/login');
+});
 
 module.exports = router;
