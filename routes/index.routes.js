@@ -6,6 +6,17 @@ const supabase = require('../config/supabase.config')
 const fileModel = require('../models/files.models')
 const authenticateToken = require('../middlewares/auth')
 
+// Add root route
+router.get('/', (req, res) => {
+  // Check if user has token
+  const token = req.cookies.token;
+  if (token) {
+    res.redirect('/home');
+  } else {
+    res.redirect('/user/login');
+  }
+})
+
 router.get('/home', authenticateToken, async (req, res) => {
   try {
     // Fetch files uploaded by this user
