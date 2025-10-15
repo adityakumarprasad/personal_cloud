@@ -1,18 +1,15 @@
 {
   "name": "drive_clone",
   "version": "1.0.0",
-  "main": "index.js",
-  "homepage": "https://adityakumarprasad.github.io/personal_cloud",
+  "main": "app.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Personal cloud storage application",
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
     "bcrypt": "^6.0.0",
@@ -24,10 +21,6 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.0",
     "multer": "^2.0.2",
-    "nodemon": "^3.1.10",
-    "react-scripts": "^5.0.1"
-  },
-  "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "nodemon": "^3.1.10"
   }
 }

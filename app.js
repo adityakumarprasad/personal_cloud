@@ -18,7 +18,8 @@ app.use(cookieParser())
 app.use('/user',userRouter)
 app.use('/',indexRouter)
 
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, ()=>{
-console.log("server started")
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`)
 })
