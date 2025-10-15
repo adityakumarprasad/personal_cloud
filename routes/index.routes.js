@@ -16,8 +16,8 @@ router.get('/', (req, res) => {
     console.log('Redirecting to /home');
     res.redirect('/home');
   } else {
-    console.log('Redirecting to /user/login');
-    res.redirect('/user/login');
+    console.log('Redirecting to /user/register');
+    res.redirect('/user/register');
   }
 })
 
